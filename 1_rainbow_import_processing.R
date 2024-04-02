@@ -1,7 +1,7 @@
 #### Workspace ####
 
 rm(list=ls())
-setwd("C:/Users/s222165681/OneDrive - Deakin University/Rainbow trout allometry/Experiment 1/Results/Processed") 
+setwd("XX") 
 
 
 #### Packages ####
@@ -65,7 +65,7 @@ tb_respirometry <-
     O2_dup         = O2,
   ) %>%
   unite(
-    Temp_class_dup, O2_dup, col = "Treatment", sep = "°C, "
+    Temp_class_dup, O2_dup, col = "Treatment", sep = "Â°C, "
   )
 
 tb_mmr <- 
@@ -78,7 +78,7 @@ tb_mmr <-
     O2_dup         = O2,
   ) %>%
   unite(
-    Temp_class_dup, O2_dup, col = "Treatment", sep = "°C, "
+    Temp_class_dup, O2_dup, col = "Treatment", sep = "Â°C, "
   )
 
 
