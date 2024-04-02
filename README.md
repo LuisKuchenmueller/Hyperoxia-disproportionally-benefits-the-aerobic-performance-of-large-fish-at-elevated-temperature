@@ -1,6 +1,6 @@
 Data and scripts in the repository relate to the following research experiment:
 
-Hyperoxia disproportionally benefits the aerobic performance of large fish at elevated temperature
+'Hyperoxia disproportionally benefits the aerobic performance of large fish at elevated temperature'
 
 Luis L. Kuchenmueller*, Elizabeth Hoots, Timothy D. Clark
 
