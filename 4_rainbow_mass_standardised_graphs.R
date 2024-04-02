@@ -1,7 +1,7 @@
 #### Workspace ####
 
 rm(list=ls())
-setwd("C:/Users/s222165681/OneDrive - Deakin University/Rainbow trout allometry/Experiment 1/Results/Processed") 
+setwd("XX") 
 
 
 #### Packages ####
@@ -33,11 +33,11 @@ tb_MR_master <- read.csv("tb_MR_master.csv")
 
 #### Mass-standardised SMR calculation ####
 
-lm_log_smr_17_norm <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "17캜, normoxia"))
-lm_log_smr_25_norm <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "25캜, normoxia"))
-lm_log_smr_17_hyper <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "17캜, hyperoxia"))
-lm_log_smr_25_hyper <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "25캜, hyperoxia"))
-lm_log_smr_21_norm <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "21캜, normoxia"))
+lm_log_smr_17_norm <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "17째C, normoxia"))
+lm_log_smr_25_norm <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "25째C, normoxia"))
+lm_log_smr_17_hyper <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "17째C, hyperoxia"))
+lm_log_smr_25_hyper <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "25째C, hyperoxia"))
+lm_log_smr_21_norm <- lm(log10(SMR) ~ log10(mass), data = filter(tb_smr, Treatment == "21째C, normoxia"))
 
 mass = data.frame(mass = mean(tb_smr$mass)) 
 
@@ -47,7 +47,7 @@ SMR_mean_predicted_17_hyper = predict(lm_log_smr_17_hyper, newdata = mass)
 SMR_mean_predicted_25_hyper = predict(lm_log_smr_25_hyper, newdata = mass)
 SMR_mean_predicted_21_norm = predict(lm_log_smr_21_norm, newdata = mass)
 
-tb_smr_17_norm <- tb_smr[which(tb_smr$Treatment == "17캜, normoxia"),] %>% 
+tb_smr_17_norm <- tb_smr[which(tb_smr$Treatment == "17째C, normoxia"),] %>% 
   add_residuals(lm_log_smr_17_norm) 
 
 tb_smr_17_norm <- 
@@ -57,7 +57,7 @@ tb_smr_17_norm <-
     resid = NULL
   )
 
-tb_smr_25_norm <- tb_smr[which(tb_smr$Treatment == "25캜, normoxia"),] %>% 
+tb_smr_25_norm <- tb_smr[which(tb_smr$Treatment == "25째C, normoxia"),] %>% 
   add_residuals(lm_log_smr_25_norm) 
 
 tb_smr_25_norm <- 
@@ -67,7 +67,7 @@ tb_smr_25_norm <-
     resid = NULL
   )
 
-tb_smr_17_hyper <- tb_smr[which(tb_smr$Treatment == "17캜, hyperoxia"),] %>% 
+tb_smr_17_hyper <- tb_smr[which(tb_smr$Treatment == "17째C, hyperoxia"),] %>% 
   add_residuals(lm_log_smr_17_hyper) 
 
 tb_smr_17_hyper <- 
@@ -78,7 +78,7 @@ tb_smr_17_hyper <-
   )
 
 
-tb_smr_25_hyper <- tb_smr[which(tb_smr$Treatment == "25캜, hyperoxia"),] %>% 
+tb_smr_25_hyper <- tb_smr[which(tb_smr$Treatment == "25째C, hyperoxia"),] %>% 
   add_residuals(lm_log_smr_25_hyper) 
 
 tb_smr_25_hyper <- 
@@ -88,7 +88,7 @@ tb_smr_25_hyper <-
     resid = NULL
   )
 
-tb_smr_21_norm <- tb_smr[which(tb_smr$Treatment == "21캜, normoxia"),] %>% 
+tb_smr_21_norm <- tb_smr[which(tb_smr$Treatment == "21째C, normoxia"),] %>% 
   add_residuals(lm_log_smr_21_norm) 
 
 tb_smr_21_norm <- 
@@ -102,47 +102,47 @@ tb_smr_21_norm <-
 #### Mass-standardised SMR graph ####
 
 p_SMR_mass <- ggplot() +
-  geom_boxplot(aes(x = Treatment, y = SMR_mass_17_norm, fill = "17캜, normoxia"), data = tb_smr_17_norm, outlier.shape = NA, width = .15, alpha = 0.7, position = position_nudge(x = .25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_17_norm, color = "17캜, normoxia", fill = "17캜, normoxia"), data = tb_smr_17_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
+  geom_boxplot(aes(x = Treatment, y = SMR_mass_17_norm, fill = "17째C, normoxia"), data = tb_smr_17_norm, outlier.shape = NA, width = .15, alpha = 0.7, position = position_nudge(x = .25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_17_norm, color = "17째C, normoxia", fill = "17째C, normoxia"), data = tb_smr_17_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
   
-  geom_boxplot(aes(x = Treatment, y = SMR_mass_25_norm, fill = "25캜, normoxia"), data = tb_smr_25_norm, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = .25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_25_norm, color = "25캜, normoxia", fill = "25캜, normoxia"), data = tb_smr_25_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
+  geom_boxplot(aes(x = Treatment, y = SMR_mass_25_norm, fill = "25째C, normoxia"), data = tb_smr_25_norm, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = .25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_25_norm, color = "25째C, normoxia", fill = "25째C, normoxia"), data = tb_smr_25_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
   
-  geom_boxplot(aes(x = Treatment, y = SMR_mass_17_hyper, fill = "17캜, hyperoxia"), data = tb_smr_17_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_17_hyper, color = "17캜, hyperoxia", fill = "17캜, hyperoxia"), data = tb_smr_17_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
+  geom_boxplot(aes(x = Treatment, y = SMR_mass_17_hyper, fill = "17째C, hyperoxia"), data = tb_smr_17_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_17_hyper, color = "17째C, hyperoxia", fill = "17째C, hyperoxia"), data = tb_smr_17_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
   
-  geom_boxplot(aes(x = Treatment, y = SMR_mass_25_hyper, fill = "25캜, hyperoxia"), data = tb_smr_25_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_25_hyper, color = "25캜, hyperoxia", fill = "25캜, hyperoxia"), data = tb_smr_25_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
+  geom_boxplot(aes(x = Treatment, y = SMR_mass_25_hyper, fill = "25째C, hyperoxia"), data = tb_smr_25_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_25_hyper, color = "25째C, hyperoxia", fill = "25째C, hyperoxia"), data = tb_smr_25_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
   
-  geom_boxplot(aes(x = Treatment, y = SMR_mass_21_norm, fill = "21캜, normoxia"), data = tb_smr_21_norm, outlier.shape = NA, width = .15, alpha = 0.5) +
-  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_21_norm, color = "21캜, normoxia", fill = "21캜, normoxia"), data = tb_smr_21_norm, side = "l", range_scale = .4, alpha = .3) +
+  geom_boxplot(aes(x = Treatment, y = SMR_mass_21_norm, fill = "21째C, normoxia"), data = tb_smr_21_norm, outlier.shape = NA, width = .15, alpha = 0.5) +
+  gghalves::geom_half_point(aes(x = Treatment, y = SMR_mass_21_norm, color = "21째C, normoxia", fill = "21째C, normoxia"), data = tb_smr_21_norm, side = "l", range_scale = .4, alpha = .3) +
   
   labs(x = "Treatment", y = expression(SMR~(mg~O[2]~min^-1~88.5~g^-1))) +
   theme_classic() +
-  scale_x_discrete(limits = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia")) +
+  scale_x_discrete(limits = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia")) +
   scale_fill_manual(name = "Treatment", values = c(
-    "17캜, normoxia" = "slateblue1",
-    "25캜, normoxia" = "darkorange2",
-    "17캜, hyperoxia" = "blue",
-    "25캜, hyperoxia" = "red3",
-    "21캜, normoxia" = "orange"),
-    breaks = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia")) +
+    "17째C, normoxia" = "slateblue1",
+    "25째C, normoxia" = "darkorange2",
+    "17째C, hyperoxia" = "blue",
+    "25째C, hyperoxia" = "red3",
+    "21째C, normoxia" = "orange"),
+    breaks = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia")) +
   scale_color_manual(name = "Treatment", values = c(
-    "17캜, normoxia" = "slateblue1",
-    "25캜, normoxia" = "darkorange2",
-    "17캜, hyperoxia" = "blue",
-    "25캜, hyperoxia" = "red3",
-    "21캜, normoxia" = "orange"),
-    breaks = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia"))
+    "17째C, normoxia" = "slateblue1",
+    "25째C, normoxia" = "darkorange2",
+    "17째C, hyperoxia" = "blue",
+    "25째C, hyperoxia" = "red3",
+    "21째C, normoxia" = "orange"),
+    breaks = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia"))
 
 
 #### Mass-standardised MMR calculation ####
 
-lm_log_mmr_17_norm <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "17캜, normoxia"))
-lm_log_mmr_25_norm <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "25캜, normoxia"))
-lm_log_mmr_17_hyper <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "17캜, hyperoxia"))
-lm_log_mmr_25_hyper <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "25캜, hyperoxia"))
-lm_log_mmr_21_norm <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "21캜, normoxia"))
+lm_log_mmr_17_norm <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "17째C, normoxia"))
+lm_log_mmr_25_norm <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "25째C, normoxia"))
+lm_log_mmr_17_hyper <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "17째C, hyperoxia"))
+lm_log_mmr_25_hyper <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "25째C, hyperoxia"))
+lm_log_mmr_21_norm <- lm(log10(MMR) ~ log10(mass), data = filter(tb_mmr, Treatment == "21째C, normoxia"))
 
 mass = data.frame(mass = mean(tb_mmr$mass)) 
 
@@ -152,7 +152,7 @@ MMR_mean_predicted_17_hyper = predict(lm_log_mmr_17_hyper, newdata = mass)
 MMR_mean_predicted_25_hyper = predict(lm_log_mmr_25_hyper, newdata = mass)
 MMR_mean_predicted_21_norm = predict(lm_log_mmr_21_norm, newdata = mass)
 
-tb_mmr_17_norm <- tb_mmr[which(tb_mmr$Treatment == "17캜, normoxia"),] %>% 
+tb_mmr_17_norm <- tb_mmr[which(tb_mmr$Treatment == "17째C, normoxia"),] %>% 
   add_residuals(lm_log_mmr_17_norm) 
 
 tb_mmr_17_norm <- 
@@ -162,7 +162,7 @@ tb_mmr_17_norm <-
     resid = NULL
   )
 
-tb_mmr_25_norm <- tb_mmr[which(tb_mmr$Treatment == "25캜, normoxia"),] %>% 
+tb_mmr_25_norm <- tb_mmr[which(tb_mmr$Treatment == "25째C, normoxia"),] %>% 
   add_residuals(lm_log_mmr_25_norm) 
 
 tb_mmr_25_norm <- 
@@ -171,7 +171,7 @@ tb_mmr_25_norm <-
     MMR_mass_25_norm = 10^(MMR_mean_predicted_25_norm + resid),
     resid = NULL
   )
-tb_mmr_17_hyper <- tb_mmr[which(tb_mmr$Treatment == "17캜, hyperoxia"),] %>% 
+tb_mmr_17_hyper <- tb_mmr[which(tb_mmr$Treatment == "17째C, hyperoxia"),] %>% 
   add_residuals(lm_log_mmr_17_hyper) 
 
 tb_mmr_17_hyper <- 
@@ -182,7 +182,7 @@ tb_mmr_17_hyper <-
   )
 
 
-tb_mmr_25_hyper <- tb_mmr[which(tb_mmr$Treatment == "25캜, hyperoxia"),] %>% 
+tb_mmr_25_hyper <- tb_mmr[which(tb_mmr$Treatment == "25째C, hyperoxia"),] %>% 
   add_residuals(lm_log_mmr_25_hyper) 
 
 tb_mmr_25_hyper <- 
@@ -192,7 +192,7 @@ tb_mmr_25_hyper <-
     resid = NULL
   )
 
-tb_mmr_21_norm <- tb_mmr[which(tb_mmr$Treatment == "21캜, normoxia"),] %>% 
+tb_mmr_21_norm <- tb_mmr[which(tb_mmr$Treatment == "21째C, normoxia"),] %>% 
   add_residuals(lm_log_mmr_21_norm) 
 
 tb_mmr_21_norm <- 
@@ -206,47 +206,47 @@ tb_mmr_21_norm <-
 #### Mass-standardised MMR graph ####
 
 p_MMR_mass <- ggplot() +
-  geom_boxplot(aes(x = Treatment, y = MMR_mass_17_norm, fill = "17캜, normoxia"), data = tb_mmr_17_norm, outlier.shape = NA, width = .15, alpha = 0.7, position = position_nudge(x = .25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_17_norm, color = "17캜, normoxia", fill = "17캜, normoxia"), data = tb_mmr_17_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
+  geom_boxplot(aes(x = Treatment, y = MMR_mass_17_norm, fill = "17째C, normoxia"), data = tb_mmr_17_norm, outlier.shape = NA, width = .15, alpha = 0.7, position = position_nudge(x = .25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_17_norm, color = "17째C, normoxia", fill = "17째C, normoxia"), data = tb_mmr_17_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
   
-  geom_boxplot(aes(x = Treatment, y = MMR_mass_25_norm, fill = "25캜, normoxia"), data = tb_mmr_25_norm, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = .25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_25_norm, color = "25캜, normoxia", fill = "25캜, normoxia"), data = tb_mmr_25_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
+  geom_boxplot(aes(x = Treatment, y = MMR_mass_25_norm, fill = "25째C, normoxia"), data = tb_mmr_25_norm, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = .25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_25_norm, color = "25째C, normoxia", fill = "25째C, normoxia"), data = tb_mmr_25_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
   
-  geom_boxplot(aes(x = Treatment, y = MMR_mass_17_hyper, fill = "17캜, hyperoxia"), data = tb_mmr_17_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_17_hyper, color = "17캜, hyperoxia", fill = "17캜, hyperoxia"), data = tb_mmr_17_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
+  geom_boxplot(aes(x = Treatment, y = MMR_mass_17_hyper, fill = "17째C, hyperoxia"), data = tb_mmr_17_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_17_hyper, color = "17째C, hyperoxia", fill = "17째C, hyperoxia"), data = tb_mmr_17_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
   
-  geom_boxplot(aes(x = Treatment, y = MMR_mass_25_hyper, fill = "25캜, hyperoxia"), data = tb_mmr_25_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_25_hyper, color = "25캜, hyperoxia", fill = "25캜, hyperoxia"), data = tb_mmr_25_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
+  geom_boxplot(aes(x = Treatment, y = MMR_mass_25_hyper, fill = "25째C, hyperoxia"), data = tb_mmr_25_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_25_hyper, color = "25째C, hyperoxia", fill = "25째C, hyperoxia"), data = tb_mmr_25_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
   
-  geom_boxplot(aes(x = Treatment, y = MMR_mass_21_norm, fill = "21캜, normoxia"), data = tb_mmr_21_norm, outlier.shape = NA, width = .15, alpha = 0.5) +
-  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_21_norm, color = "21캜, normoxia", fill = "21캜, normoxia"), data = tb_mmr_21_norm, side = "l", range_scale = .4, alpha = .3) +
+  geom_boxplot(aes(x = Treatment, y = MMR_mass_21_norm, fill = "21째C, normoxia"), data = tb_mmr_21_norm, outlier.shape = NA, width = .15, alpha = 0.5) +
+  gghalves::geom_half_point(aes(x = Treatment, y = MMR_mass_21_norm, color = "21째C, normoxia", fill = "21째C, normoxia"), data = tb_mmr_21_norm, side = "l", range_scale = .4, alpha = .3) +
   
   labs(x = "Treatment", y = expression(MMR~(mg~O[2]~min^-1~88.5~g^-1))) +
   theme_classic() +
-  scale_x_discrete(limits = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia")) +
+  scale_x_discrete(limits = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia")) +
   scale_fill_manual(name = "Treatment", values = c(
-    "17캜, normoxia" = "slateblue1",
-    "25캜, normoxia" = "darkorange2",
-    "17캜, hyperoxia" = "blue",
-    "25캜, hyperoxia" = "red3",
-    "21캜, normoxia" = "orange"),
-    breaks = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia")) +
+    "17째C, normoxia" = "slateblue1",
+    "25째C, normoxia" = "darkorange2",
+    "17째C, hyperoxia" = "blue",
+    "25째C, hyperoxia" = "red3",
+    "21째C, normoxia" = "orange"),
+    breaks = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia")) +
   scale_color_manual(name = "Treatment", values = c(
-    "17캜, normoxia" = "slateblue1",
-    "25캜, normoxia" = "darkorange2",
-    "17캜, hyperoxia" = "blue",
-    "25캜, hyperoxia" = "red3",
-    "21캜, normoxia" = "orange"),
-    breaks = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia"))
+    "17째C, normoxia" = "slateblue1",
+    "25째C, normoxia" = "darkorange2",
+    "17째C, hyperoxia" = "blue",
+    "25째C, hyperoxia" = "red3",
+    "21째C, normoxia" = "orange"),
+    breaks = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia"))
 
 
 #### Mass-standardised AAS calculation ####
 
-lm_log_aas_17_norm <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "17캜, normoxia"))
-lm_log_aas_25_norm <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "25캜, normoxia"))
-lm_log_aas_17_hyper <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "17캜, hyperoxia"))
-lm_log_aas_25_hyper <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "25캜, hyperoxia"))
-lm_log_aas_21_norm <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "21캜, normoxia"))
+lm_log_aas_17_norm <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "17째C, normoxia"))
+lm_log_aas_25_norm <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "25째C, normoxia"))
+lm_log_aas_17_hyper <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "17째C, hyperoxia"))
+lm_log_aas_25_hyper <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "25째C, hyperoxia"))
+lm_log_aas_21_norm <- lm(log10(AAS) ~ log10(mass), data = filter(tb_MR_master, Treatment == "21째C, normoxia"))
 
 mass <- data.frame(mass = mean(tb_MR_master$mass))
 
@@ -256,7 +256,7 @@ AAS_mean_predicted_17_hyper <- predict(lm_log_aas_17_hyper, newdata = mass)
 AAS_mean_predicted_25_hyper <- predict(lm_log_aas_25_hyper, newdata = mass)
 AAS_mean_predicted_21_norm <- predict(lm_log_aas_21_norm, newdata = mass)
 
-tb_MR_master_17_norm <- tb_MR_master[which(tb_MR_master$Treatment == "17캜, normoxia"),] %>% 
+tb_MR_master_17_norm <- tb_MR_master[which(tb_MR_master$Treatment == "17째C, normoxia"),] %>% 
   add_residuals(lm_log_aas_17_norm)
 
 tb_MR_master_17_norm <- 
@@ -266,7 +266,7 @@ tb_MR_master_17_norm <-
     resid = NULL
   )
 
-tb_MR_master_25_norm <- tb_MR_master[which(tb_MR_master$Treatment == "25캜, normoxia"),] %>% 
+tb_MR_master_25_norm <- tb_MR_master[which(tb_MR_master$Treatment == "25째C, normoxia"),] %>% 
   add_residuals(lm_log_aas_25_norm)
 
 tb_MR_master_25_norm <- 
@@ -276,7 +276,7 @@ tb_MR_master_25_norm <-
     resid = NULL
   )
 
-tb_MR_master_17_hyper <- tb_MR_master[which(tb_MR_master$Treatment == "17캜, hyperoxia"),] %>% 
+tb_MR_master_17_hyper <- tb_MR_master[which(tb_MR_master$Treatment == "17째C, hyperoxia"),] %>% 
   add_residuals(lm_log_aas_17_hyper)
 
 tb_MR_master_17_hyper <- 
@@ -286,7 +286,7 @@ tb_MR_master_17_hyper <-
     resid = NULL
   )
 
-tb_MR_master_25_hyper <- tb_MR_master[which(tb_MR_master$Treatment == "25캜, hyperoxia"),] %>% 
+tb_MR_master_25_hyper <- tb_MR_master[which(tb_MR_master$Treatment == "25째C, hyperoxia"),] %>% 
   add_residuals(lm_log_aas_25_hyper)
 
 tb_MR_master_25_hyper <- 
@@ -296,7 +296,7 @@ tb_MR_master_25_hyper <-
     resid = NULL
   )
 
-tb_MR_master_21_norm <- tb_MR_master[which(tb_MR_master$Treatment == "21캜, normoxia"),] %>% 
+tb_MR_master_21_norm <- tb_MR_master[which(tb_MR_master$Treatment == "21째C, normoxia"),] %>% 
   add_residuals(lm_log_aas_21_norm)
 
 tb_MR_master_21_norm <- 
@@ -310,38 +310,38 @@ tb_MR_master_21_norm <-
 #### Mass-standardised AAS graph ####
 
 p_AAS_mass <- ggplot() +
-  geom_boxplot(aes(x = Treatment, y = AAS_mass_17_norm, fill = "17캜, normoxia"), data = tb_MR_master_17_norm, outlier.shape = NA, width = .15, alpha = 0.7, position = position_nudge(x = .25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_17_norm, color = "17캜, normoxia", fill = "17캜, normoxia"), data = tb_MR_master_17_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
+  geom_boxplot(aes(x = Treatment, y = AAS_mass_17_norm, fill = "17째C, normoxia"), data = tb_MR_master_17_norm, outlier.shape = NA, width = .15, alpha = 0.7, position = position_nudge(x = .25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_17_norm, color = "17째C, normoxia", fill = "17째C, normoxia"), data = tb_MR_master_17_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
   
-  geom_boxplot(aes(x = Treatment, y = AAS_mass_25_norm, fill = "25캜, normoxia"), data = tb_MR_master_25_norm, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = .25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_25_norm, color = "25캜, normoxia", fill = "25캜, normoxia"), data = tb_MR_master_25_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
+  geom_boxplot(aes(x = Treatment, y = AAS_mass_25_norm, fill = "25째C, normoxia"), data = tb_MR_master_25_norm, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = .25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_25_norm, color = "25째C, normoxia", fill = "25째C, normoxia"), data = tb_MR_master_25_norm, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = .25)) +
   
-  geom_boxplot(aes(x = Treatment, y = AAS_mass_17_hyper, fill = "17캜, hyperoxia"), data = tb_MR_master_17_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_17_hyper, color = "17캜, hyperoxia", fill = "17캜, hyperoxia"), data = tb_MR_master_17_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
+  geom_boxplot(aes(x = Treatment, y = AAS_mass_17_hyper, fill = "17째C, hyperoxia"), data = tb_MR_master_17_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_17_hyper, color = "17째C, hyperoxia", fill = "17째C, hyperoxia"), data = tb_MR_master_17_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
   
-  geom_boxplot(aes(x = Treatment, y = AAS_mass_25_hyper, fill = "25캜, hyperoxia"), data = tb_MR_master_25_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
-  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_25_hyper, color = "25캜, hyperoxia", fill = "25캜, hyperoxia"), data = tb_MR_master_25_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
+  geom_boxplot(aes(x = Treatment, y = AAS_mass_25_hyper, fill = "25째C, hyperoxia"), data = tb_MR_master_25_hyper, outlier.shape = NA, width = .15, alpha = 0.5, position = position_nudge(x = -.25)) +
+  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_25_hyper, color = "25째C, hyperoxia", fill = "25째C, hyperoxia"), data = tb_MR_master_25_hyper, side = "l", range_scale = .4, alpha = .3, position = position_nudge(x = -.25)) +
   
-  geom_boxplot(aes(x = Treatment, y = AAS_mass_21_norm, fill = "21캜, normoxia"), data = tb_MR_master_21_norm, outlier.shape = NA, width = .15, alpha = 0.5) +
-  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_21_norm, color = "21캜, normoxia", fill = "21캜, normoxia"), data = tb_MR_master_21_norm, side = "l", range_scale = .4, alpha = .3) +
+  geom_boxplot(aes(x = Treatment, y = AAS_mass_21_norm, fill = "21째C, normoxia"), data = tb_MR_master_21_norm, outlier.shape = NA, width = .15, alpha = 0.5) +
+  gghalves::geom_half_point(aes(x = Treatment, y = AAS_mass_21_norm, color = "21째C, normoxia", fill = "21째C, normoxia"), data = tb_MR_master_21_norm, side = "l", range_scale = .4, alpha = .3) +
   
   labs(y = expression(AAS~(mg~O[2]~min^-1~88.5~g^-1))) +
   theme_classic() +
-  scale_x_discrete(limits = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia")) +
+  scale_x_discrete(limits = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia")) +
   scale_fill_manual(name = "Treatment", values = c(
-    "17캜, normoxia" = "slateblue1",
-    "25캜, normoxia" = "darkorange2",
-    "17캜, hyperoxia" = "blue",
-    "25캜, hyperoxia" = "red3",
-    "21캜, normoxia" = "orange"),
-    breaks = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia")) +
+    "17째C, normoxia" = "slateblue1",
+    "25째C, normoxia" = "darkorange2",
+    "17째C, hyperoxia" = "blue",
+    "25째C, hyperoxia" = "red3",
+    "21째C, normoxia" = "orange"),
+    breaks = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia")) +
   scale_color_manual(name = "Treatment", values = c(
-    "17캜, normoxia" = "slateblue1",
-    "25캜, normoxia" = "darkorange2",
-    "17캜, hyperoxia" = "blue",
-    "25캜, hyperoxia" = "red3",
-    "21캜, normoxia" = "orange"),
-    breaks = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia"))
+    "17째C, normoxia" = "slateblue1",
+    "25째C, normoxia" = "darkorange2",
+    "17째C, hyperoxia" = "blue",
+    "25째C, hyperoxia" = "red3",
+    "21째C, normoxia" = "orange"),
+    breaks = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia"))
 
 
 
