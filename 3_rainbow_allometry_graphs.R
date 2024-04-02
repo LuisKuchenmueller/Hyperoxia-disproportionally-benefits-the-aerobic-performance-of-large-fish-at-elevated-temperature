@@ -1,6 +1,6 @@
 #### Workspace ####
 rm(list=ls())
-setwd("C:/Users/s222165681/OneDrive - Deakin University/Rainbow trout allometry/Experiment 1/Results/Processed") 
+setwd("XX") 
 
 #### Packages ####
 library(tidyverse) 
@@ -32,18 +32,18 @@ tb_data <- read.csv("tb_data.csv")
 tb_MR_master$Treatment <-as.factor(tb_MR_master$Treatment)
 tb_MR_master$Maturity <-as.factor(tb_MR_master$Maturity)
 
-tb_MR_master$Treatment <- factor(tb_MR_master$Treatment, levels = c("17캜, normoxia", "17캜, hyperoxia", "21캜, normoxia", "25캜, normoxia", "25캜, hyperoxia"))
+tb_MR_master$Treatment <- factor(tb_MR_master$Treatment, levels = c("17째C, normoxia", "17째C, hyperoxia", "21째C, normoxia", "25째C, normoxia", "25째C, hyperoxia"))
 
 
 #### Metabolic allometry graph ####
 
 p_SMR_17<- ggplot(data=tb_MR_master, aes(mass, SMR, shape = Maturity,  colour = Treatment, fill = Treatment )) +
-  geom_point(data = subset(tb_MR_master, Treatment == "17캜, normoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "17캜, normoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "17캜, hyperoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "17캜, hyperoxia"), aes(group = Treatment), method = lm) + 
-  geom_point(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), size=3, alpha =0.3) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "17째C, normoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "17째C, normoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "17째C, hyperoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "17째C, hyperoxia"), aes(group = Treatment), method = lm) + 
+  geom_point(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), size=3, alpha =0.3) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
   scale_x_log10(limits = c(10, 359.2), breaks = c(10, 20, 30, 40, 50, 100, 200, 300, 400, 500)) +
   scale_y_log10(limits = c(0.02, 1.5), breaks = c(0.02,0.03,0.04, 0.05,0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.5)) +
   labs(x=NULL, y = expression(SMR~(mg~O[2]~min^-1))) +  
@@ -64,12 +64,12 @@ p_SMR_17 <- p_SMR_17 +
 
 
 p_SMR_25 <- ggplot(data=tb_MR_master, aes(mass, SMR, shape = Maturity, colour = Treatment, fill = Treatment )) +
-  geom_point(data = subset(tb_MR_master, Treatment == "25캜, normoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "25캜, normoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "25캜, hyperoxia"), size=3, alpha =0.5) +
-  geom_point(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), size=3, alpha =0.3) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "25캜, hyperoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "25째C, normoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "25째C, normoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "25째C, hyperoxia"), size=3, alpha =0.5) +
+  geom_point(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), size=3, alpha =0.3) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "25째C, hyperoxia"), aes(group = Treatment), method = lm) +
   scale_x_log10(limits = c(10, 359.2), breaks = c(10, 20, 30, 40, 50, 100, 200, 300, 400, 500)) +
   scale_y_log10(limits = c(0.02, 1.5), breaks = c(0.02,0.03,0.04, 0.05,0.1, 0.2, 0.3, 0.4, 0.5, 1, 1.5)) +
   labs(x=NULL, y=NULL) + 
@@ -88,12 +88,12 @@ p_SMR_25 <- p_SMR_25 +
   annotate("text", x = 25, y = 1.1, label = eq_SMR_hyper_25, size = 5)
 
 p_MMR_17<- ggplot(data=tb_MR_master, aes(mass, MMR,shape = Maturity, colour = Treatment, fill = Treatment )) +
-  geom_point(data = subset(tb_MR_master, Treatment == "17캜, normoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "17캜, normoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "17캜, hyperoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "17캜, hyperoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), size=3, alpha =0.3) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "17째C, normoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "17째C, normoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "17째C, hyperoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "17째C, hyperoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), size=3, alpha =0.3) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
   scale_x_log10(limits = c(10, 359.2), breaks = c(10, 20, 30, 40, 50, 100, 200, 300, 400, 500)) +
   scale_y_log10(limits = c(0.14, 5), breaks = c(0.1, 0.2,0.3, 0.4, 0.5, 1, 2, 3, 5)) +
   labs(x=NULL, y = expression(MMR~(mg~O[2]~min^-1))) +  
@@ -112,12 +112,12 @@ p_MMR_17 <- p_MMR_17 +
   annotate("text", x = 25, y = 3.8, label = eq_MMR_hyper_17, size = 5)
 
 p_MMR_25 <- ggplot(data = tb_MR_master, aes(mass, MMR, shape = Maturity, colour = Treatment, fill = Treatment)) +
-  geom_point(data = subset(tb_MR_master, Treatment == "25캜, normoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "25캜, normoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "25캜, hyperoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "25캜, hyperoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), size=3, alpha =0.3) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "25째C, normoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "25째C, normoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "25째C, hyperoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "25째C, hyperoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), size=3, alpha =0.3) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
   scale_x_log10(limits = c(10, 359.2), breaks = c(10, 20, 30, 40, 50, 100, 200, 300, 400, 500)) +
   scale_y_log10(limits = c(0.14, 5), breaks = c(0.1, 0.2,0.3, 0.4, 0.5, 1, 2, 3, 5)) +
   labs(x = NULL, y = NULL) + 
@@ -136,12 +136,12 @@ p_MMR_25 <- p_MMR_25 +
   annotate("text", x = 25, y = 3.8, label = eq_MMR_hyper_25, size = 5)
 
 p_AAS_17 <- ggplot(data=tb_MR_master, aes(mass, AAS, shape = Maturity, colour = Treatment, fill = Treatment)) +
-  geom_point(data = subset(tb_MR_master, Treatment == "17캜, normoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "17캜, normoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "17캜, hyperoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "17캜, hyperoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), size=3, alpha =0.3) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "17째C, normoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "17째C, normoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "17째C, hyperoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "17째C, hyperoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), size=3, alpha =0.3) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
   scale_x_log10(limits = c(10, 359.2), breaks = c(10, 20, 30, 40, 50, 100, 200, 300, 400, 500)) +
   scale_y_log10(limits = c(0.14, 5), breaks = c(0.1, 0.2,0.3, 0.4, 0.5, 1, 2, 3, 5)) +
   labs(x=NULL, y = expression(AAS~(mg~O[2]~min^-1))) +  
@@ -160,12 +160,12 @@ p_AAS_17 <- p_AAS_17 +
   annotate("text", x = 25, y = 3.8, label = eq_AAS_hyper_17, size = 5)
 
 p_AAS_25 <- ggplot(data = tb_MR_master, aes(mass, AAS, shape = Maturity, colour = as.factor(Treatment), fill = as.factor(Treatment))) +
-  geom_point(data = subset(tb_MR_master, Treatment == "25캜, normoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "25캜, normoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "25캜, hyperoxia"), size=3, alpha =0.5) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "25캜, hyperoxia"), aes(group = Treatment), method = lm) +
-  geom_point(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), size=3, alpha =0.3) +
-  geom_smooth(data = subset(tb_MR_master, Treatment == "21캜, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "25째C, normoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "25째C, normoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "25째C, hyperoxia"), size=3, alpha =0.5) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "25째C, hyperoxia"), aes(group = Treatment), method = lm) +
+  geom_point(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), size=3, alpha =0.3) +
+  geom_smooth(data = subset(tb_MR_master, Treatment == "21째C, normoxia"), aes(group = Treatment), alpha= 0.3, method = lm) +
   scale_x_log10(limits = c(10, 359.2), breaks = c(10, 20, 30, 40, 50, 100, 200, 300, 400, 500)) +
   scale_y_log10(limits = c(0.14, 5), breaks = c(0.1, 0.2,0.3, 0.4, 0.5, 1, 2, 3, 5)) +
   labs(x = NULL, y = NULL) +  
