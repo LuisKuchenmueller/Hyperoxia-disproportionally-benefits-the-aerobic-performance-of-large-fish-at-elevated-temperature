@@ -1,7 +1,7 @@
 #### Workspace ####
 
 rm(list=ls())
-setwd("C:/Users/s222165681/OneDrive - Deakin University/Rainbow trout allometry/Experiment 1/Results/Processed") 
+setwd("XX") 
 
 
 #### Packages ####
@@ -86,7 +86,7 @@ SMR_factor <- cld(SMR_compare_factor)
 
 tb_SMR_slope <- as.data.frame(SMR_slope)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     SMR_slope = log_mass.trend,
     SMR_slope_SE = SE,
     SMR_slope_df = df,
@@ -103,12 +103,12 @@ tb_SMR_slope <- as.data.frame(SMR_slope)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 tb_SMR_factor <- as.data.frame(SMR_factor)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     SMR_factor = 10^emmean,
     #SMR_int_grand_mean_SE = 10^SE,
     SMR_factor_df = df,
@@ -125,12 +125,12 @@ tb_SMR_factor <- as.data.frame(SMR_factor)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 tb_SMR_int_grand_mean <- as.data.frame(SMR_int_grand_mean)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     SMR_int_grand_mean = 10^emmean,
     #SMR_int_grand_mean_SE = 10^SE,
     SMR_int_grand_mean_df = df,
@@ -147,7 +147,7 @@ tb_SMR_int_grand_mean <- as.data.frame(SMR_int_grand_mean)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
     )
 
 
@@ -191,7 +191,7 @@ MMR_factor <- cld(MMR_compare_factor)
 
 tb_MMR_slope <- as.data.frame(MMR_slope)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     MMR_slope = log_mass.trend,
     MMR_slope_SE = SE,
     MMR_slope_df = df,
@@ -208,12 +208,12 @@ tb_MMR_slope <- as.data.frame(MMR_slope)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 tb_MMR_factor <- as.data.frame(MMR_factor)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     MMR_factor = 10^emmean,
     #SMR_int_grand_mean_SE = 10^SE,
     MMR_factor_df = df,
@@ -230,12 +230,12 @@ tb_MMR_factor <- as.data.frame(MMR_factor)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 tb_MMR_int_grand_mean <- as.data.frame(MMR_int_grand_mean)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     MMR_int_grand_mean = 10^emmean,
     #MMR_int_grand_mean_SE = 10^SE,
     MMR_int_grand_mean_df = df,
@@ -252,7 +252,7 @@ tb_MMR_int_grand_mean <- as.data.frame(MMR_int_grand_mean)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 #### AAS Linear Model ####
@@ -291,7 +291,7 @@ AAS_factor <- cld(AAS_compare_factor)
 
 tb_AAS_slope <- as.data.frame(AAS_slope)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     AAS_slope = log_mass.trend,
     AAS_slope_SE = SE,
     AAS_slope_df = df,
@@ -308,12 +308,12 @@ tb_AAS_slope <- as.data.frame(AAS_slope)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 tb_AAS_factor <- as.data.frame(AAS_factor)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     AAS_factor = 10^emmean,
     #SMR_int_grand_mean_SE = 10^SE,
     AAS_factor_df = df,
@@ -330,12 +330,12 @@ tb_AAS_factor <- as.data.frame(AAS_factor)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 tb_AAS_int_grand_mean <- as.data.frame(AAS_int_grand_mean)  %>% 
   mutate(
-    Treatment = paste0(Temp_class, "캜, ", O2),
+    Treatment = paste0(Temp_class, "째C, ", O2),
     AAS_int_grand_mean = 10^emmean,
     #AAS_int_grand_mean_SE = 10^SE,
     AAS_int_grand_mean_df = df,
@@ -352,7 +352,7 @@ tb_AAS_int_grand_mean <- as.data.frame(AAS_int_grand_mean)  %>%
     .group = NULL
   ) %>% 
   filter(
-    Treatment != "21캜, hyperoxia"
+    Treatment != "21째C, hyperoxia"
   )
 
 
