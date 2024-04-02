@@ -1,7 +1,7 @@
 #### Workspace ####
 
 rm(list=ls())
-setwd("C:/Users/s222165681/OneDrive - Deakin University/Rainbow trout allometry/Experiment 1/Results/Processed") 
+setwd("XX") 
 
 
 #### Packages ####
@@ -33,19 +33,19 @@ tb_MR_master <- read.csv("tb_MR_master.csv")
 
 #### Data Preparation ####
 
-tb_respirometry_n25 <- tb_respirometry[which(tb_respirometry$Treatment=="25캜, normoxia"),] %>%
+tb_respirometry_n25 <- tb_respirometry[which(tb_respirometry$Treatment=="25째C, normoxia"),] %>%
   arrange(desc(mass))
 
-tb_respirometry_h25 <- tb_respirometry[which(tb_respirometry$Treatment=="25캜, hyperoxia"),] %>%
+tb_respirometry_h25 <- tb_respirometry[which(tb_respirometry$Treatment=="25째C, hyperoxia"),] %>%
   arrange(desc(mass))
 
-tb_respirometry_h17 <- tb_respirometry[which(tb_respirometry$Treatment=="17캜, hyperoxia"),] %>%
+tb_respirometry_h17 <- tb_respirometry[which(tb_respirometry$Treatment=="17째C, hyperoxia"),] %>%
   arrange(desc(mass))
 
-tb_respirometry_n17 <- tb_respirometry[which(tb_respirometry$Treatment=="17캜, normoxia"),] %>%
+tb_respirometry_n17 <- tb_respirometry[which(tb_respirometry$Treatment=="17째C, normoxia"),] %>%
   arrange(desc(mass))
 
-tb_respirometry_n21 <- tb_respirometry[which(tb_respirometry$Treatment=="21캜, normoxia"),] %>%
+tb_respirometry_n21 <- tb_respirometry[which(tb_respirometry$Treatment=="21째C, normoxia"),] %>%
   arrange(desc(mass))
 
 
@@ -79,7 +79,7 @@ p_n17_SMR <- ggplot(data = n17_SMR) +
   geom_line(aes(Phase, SMR_mlnd, colour = "3 SMR-mlnd")) +
   scale_x_continuous(breaks = seq(0, max(tb_respirometry$Phase), 10)) +  # Use Phase variable for breaks
   facet_wrap(~factor(mass), scales = "free_y", ncol = 4) +
-  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "17캜, normoxia") +
+  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "17째C, normoxia") +
   scale_color_manual(values = c("black", "red", "blue", "darkgreen")) +
   theme_classic() +
   theme(
@@ -105,7 +105,7 @@ p_h17_SMR <- ggplot(data = h17_SMR) +
   geom_line(aes(Phase, SMR_mlnd, colour = "3 SMR-mlnd")) +
   scale_x_continuous(breaks = seq(0, max(tb_respirometry$Phase), 10)) +  # Use Phase variable for breaks
   facet_wrap(~factor(mass), scales = "free_y", ncol = 4) +
-  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "17캜, hyperoxia") +
+  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "17째C, hyperoxia") +
   scale_color_manual(values = c("black", "red", "blue", "darkgreen")) +
   theme_classic() +
   theme(
@@ -131,7 +131,7 @@ p_n21_SMR <- ggplot(data = n21_SMR) +
   geom_line(aes(Phase, SMR_mlnd, colour = "3 SMR-mlnd")) +
   scale_x_continuous(breaks = seq(0, max(tb_respirometry$Phase), 10)) +  # Use Phase variable for breaks
   facet_wrap(~factor(mass), scales = "free_y", ncol = 4) +
-  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "21캜, normoxia") +
+  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "21째C, normoxia") +
   scale_color_manual(values = c("black", "red", "blue", "darkgreen")) +
   theme_classic() +
   theme(
@@ -157,7 +157,7 @@ p_n25_SMR <- ggplot(data = n25_SMR) +
   geom_line(aes(Phase, SMR_mlnd, colour = "3 SMR-mlnd")) +
   scale_x_continuous(breaks = seq(0, max(tb_respirometry$Phase), 10)) +  # Use Phase variable for breaks
   facet_wrap(~factor(mass), scales = "free_y", ncol = 4) +
-  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "25캜, normoxia") +
+  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "25째C, normoxia") +
   scale_color_manual(values = c("black", "red", "blue", "darkgreen")) +
   theme_classic() +
   theme(
@@ -183,7 +183,7 @@ p_h25_SMR <- ggplot(data = h25_SMR) +
   geom_line(aes(Phase, SMR_mlnd, colour = "3 SMR-mlnd")) +
   scale_x_continuous(breaks = seq(0, max(tb_respirometry$Phase), 10)) +  # Use Phase variable for breaks
   facet_wrap(~factor(mass), scales = "free_y", ncol = 4) +
-  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "25캜, normoxia") +
+  labs(x = "Phase (20 min)", y = expression(Metabolic~rate~(mg~O[2]~min^-1)), title = "25째C, normoxia") +
   scale_color_manual(values = c("black", "red", "blue", "darkgreen")) +
   theme_classic() +
   theme(
@@ -205,11 +205,11 @@ print(p_h25_SMR)
 
 #### Comparing SMR trials ####
 
-n25_master <- tb_MR_master[which(tb_MR_master$Treatment=="25캜, normoxia"),] 
-h25_master <- tb_MR_master[which(tb_MR_master$Treatment=="25캜, hyperoxia"),] 
-h17_master <- tb_MR_master[which(tb_MR_master$Treatment=="17캜, hyperoxia"),]
-n17_master <- tb_MR_master[which(tb_MR_master$Treatment=="17캜, normoxia"),] 
-n21_master <- tb_MR_master[which(tb_MR_master$Treatment=="21캜, normoxia"),] 
+n25_master <- tb_MR_master[which(tb_MR_master$Treatment=="25째C, normoxia"),] 
+h25_master <- tb_MR_master[which(tb_MR_master$Treatment=="25째C, hyperoxia"),] 
+h17_master <- tb_MR_master[which(tb_MR_master$Treatment=="17째C, hyperoxia"),]
+n17_master <- tb_MR_master[which(tb_MR_master$Treatment=="17째C, normoxia"),] 
+n21_master <- tb_MR_master[which(tb_MR_master$Treatment=="21째C, normoxia"),] 
 
 
 #### SMR trial comparison ####
