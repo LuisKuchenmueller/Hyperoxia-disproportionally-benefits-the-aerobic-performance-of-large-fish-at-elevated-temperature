@@ -8,4 +8,4 @@ Luis L. Kuchenmueller*, Elizabeth Hoots, Timothy D. Clark
 
 Please see the manuscript for a description of the experimental protocol and the statistical approach.
 
-Please see 'README description of files Kuchenmueller 2024' for file descriptions.
+Please see 'README_file_descriptions.txt' for file descriptions.
